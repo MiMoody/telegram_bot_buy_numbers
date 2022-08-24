@@ -1,0 +1,24 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "contest_code" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"user_id"	INTEGER NOT NULL,
+	"individual_number"	INTEGER NOT NULL UNIQUE,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("user_id") REFERENCES "user"("id")
+);
+CREATE TABLE IF NOT EXISTS "payment" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"payment_object"	TEXT NOT NULL,
+	"user_id"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("user_id") REFERENCES "user"("id")
+);
+CREATE TABLE IF NOT EXISTS "user" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"telegram_user_id"	INTEGER NOT NULL UNIQUE,
+	"username"	TEXT NOT NULL,
+	"first_name"	TEXT,
+	"last_name"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;
